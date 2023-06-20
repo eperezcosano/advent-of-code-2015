@@ -1,6 +1,6 @@
 {
   "name": "advent-of-code-2022",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Advent Of Code 2022 Solutions",
   "scripts": {
     "day1_1": "cd day01 && node day1_1.js",
@@ -37,7 +37,6 @@
     "day16_2": "cd day16 && node day16_2.js",
     "day17_1": "cd day17 && node day17_1.js",
     "day17_2": "cd day17 && node day17_2.js",
-    "day17_2_2": "cd day17 && node day17_2_2.js",
     "day18_1": "cd day18 && node day18_1.js",
     "day18_2": "cd day18 && node day18_2.js",
     "day19_1": "cd day19 && node day19_1.js",
@@ -56,19 +55,18 @@
   },
   "keywords": [
     "aoc",
-    "aoc2022",
-    "aoc22",
+    "aoc2015",
+    "aoc15",
     "Advent",
     "AdventOfCode",
-    "AdventOfCode2022"
+    "AdventOfCode2015"
   ],
   "author": "Izan Pérez Cosano",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eperezcosano/advent-of-code-2022.git"
+    "url": "https://github.com/eperezcosano/advent-of-code-2015.git"
   },
   "license": "MIT",
   "dependencies": {
-    "mathjs": "^11.5.1"
   }
 }
