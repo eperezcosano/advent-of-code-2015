@@ -5,7 +5,7 @@
 * */
 
 const lineReader = require('readline').createInterface({
-    input: require('fs').createReadStream('./day1.txt')
+    input: require('fs').createReadStream('./day01.txt')
 })
 
 lineReader.on('line', (line) => {
@@ -14,3 +14,4 @@ lineReader.on('line', (line) => {
 lineReader.on('close', () => {
     // Total:
 })
+
