@@ -19,5 +19,5 @@ lineReader.on('line', (line) => {
 
 lineReader.on('close', () => {
     console.log('Total:', sum)
-    // Total: 1606483
+    // Total: 3842356
 })
