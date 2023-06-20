@@ -11,9 +11,8 @@ const lineReader = require('readline').createInterface({
 let sum = 0
 
 lineReader.on('line', (line) => {
-    const box = line.split('x').map(item => parseInt(item))
+    const box = line.split('x').map(item => parseInt(item)).sort((a, b) => a - b)
     const surface = 2 * (box[0] * box[1] + box[1] * box[2] + box[2] * box[0])
-    box.sort((a, b) => a - b)
     const slack = box[0] * box[1]
     sum += surface + slack
 })
