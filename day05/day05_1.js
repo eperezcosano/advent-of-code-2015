@@ -10,11 +10,16 @@ const lineReader = require('readline').createInterface({
 
 let sum = 0
 
-lineReader.on('line', (line) => {
+function isNice(string) {
+    return string.match(/[aeiou]/gi)?.length >= 3 && /(\w)\1/.test(string) && !/(ab|cd|pq|xy)/.test(string)
+}
 
+lineReader.on('line', (line) => {
+    isNice(line) ? sum++ : null
 })
 
 lineReader.on('close', () => {
-    // Total:
+    console.log('Total:', sum)
+    // Total: 238
 })
 
