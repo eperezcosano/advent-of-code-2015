@@ -3,15 +3,15 @@
 *               --- Part One ---
 *              Advent Of Code 2015
 * */
+const crypto = require('crypto')
 
-const lineReader = require('readline').createInterface({
-    input: require('fs').createReadStream('./day04.txt')
-})
+const input = 'yzbqklnj'
 
-lineReader.on('line', (line) => {
-})
+let key = 0
+let hash
+do {
+    hash = crypto.createHash('md5').update(`${input}${++key}`).digest('hex')
+} while (!hash.startsWith('00000'))
 
-lineReader.on('close', () => {
-    // Total:
-})
-
+console.log('Result:', key)
+// Result: 282749
