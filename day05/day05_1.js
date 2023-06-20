@@ -22,4 +22,3 @@ lineReader.on('close', () => {
     console.log('Total:', sum)
     // Total: 238
 })
-
