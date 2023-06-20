@@ -9,9 +9,7 @@ const lineReader = require('readline').createInterface({
 })
 
 lineReader.on('line', (line) => {
+    const res = line.split('').reduce((sum, value) => value === '(' ? ++sum : --sum, 0)
+    console.log('Result:', res)
+    // Result: 232
 })
-
-lineReader.on('close', () => {
-    // Total:
-})
-
