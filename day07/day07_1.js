@@ -4,7 +4,7 @@
 *           Advent Of Code 2015
 * */
 const lineReader = require('readline').createInterface({
-    input: require('fs').createReadStream('./test.txt')
+    input: require('fs').createReadStream('./day07.txt')
 })
 
 const wires = new Map()
@@ -21,59 +21,34 @@ function rShift(n, m) {
     return (n >> m) & 0xFFFF
 }
 
-function getWire(id) {
-    return isNaN(wires.get(id)) ? 0 : wires.get(id)
-}
-
-// if (words.length === 3) {
-//     // Assign operation
-//     wires.set(words[2], parseInt(words[0]))
-// } else if (words.length === 4) {
-//     // Bitwise complement
-//     wires.set(words[3], not(getWire(words[1])))
-// } else {
-//     // Rest of Bitwise operations
-//     if (words[1] === 'AND')
-//         wires.set(words[4], getWire(words[0]) & getWire(words[2]))
-//     else if (words[1] === 'OR')
-//         wires.set(words[4], getWire(words[0]) | getWire(words[2]))
-//     else if (words[1] === 'LSHIFT')
-//         wires.set(words[4], lShift(getWire(words[0]), parseInt(words[2])))
-//     else if (words[1] === 'RSHIFT')
-//         wires.set(words[4], rShift(getWire(words[0]), parseInt(words[2])))
-// }
-
 lineReader.on('line', (line) => {
     const words = line.split(' ')
     wires.set(words.pop(), words.slice(0, -1))
 })
 
-function bfs(graph, start) {
-    const toBeCalculated = [start]
-    const visited = new Set()
-    const result = []
+function calculate(gate) {
+    const stm = wires.get(gate)
+    if (!isNaN(stm)) return stm
 
-    while (queue.length) {
-        const vertex = queue.shift()
+    if (stm.length === 1 && isNaN(parseInt(stm[0]))) return calculate(stm[0])
+    if (stm.length === 2 && stm[0] === 'NOT') {
 
-        if (!graph.has(vertex)) continue
-
-        if (!visited.has(vertex)) {
-            visited.add(vertex)
-            result.push(vertex)
-            for (const neighbor of graph.get(vertex)) {
-                if (['AND', 'OR'].includes(neighbor)) continue
-                if (neighbor.endsWith('SHIFT')) break
-                queue.push(neighbor)
-            }
-        }
     }
-
-    return result
 }
 
+// function calculate(gate) {
+//     if (!isNaN(parseInt(gate))) return parseInt(gate)
+//     const statement = wires.get(gate)
+//     if (statement.length === 1 && isNaN(parseInt(statement[0]))) return calculate(statement[0])
+//     if (statement[0] === 'NOT') return not(calculate(statement[1]))
+//     if (statement[1] === 'AND') return calculate(statement[0]) & calculate(statement[2])
+//     if (statement[1] === 'OR') return calculate(statement[0]) | calculate(statement[2])
+//     if (statement[1] === 'LSHIFT') return lShift(calculate(statement[0]), statement[2])
+//     if (statement[1] === 'RSHIFT') return rShift(calculate(statement[0]), statement[2])
+//     return parseInt(statement[0])
+// }
+
 lineReader.on('close', () => {
-    console.log(wires.entries())
-    console.log(bfs(wires, 'e'))
+    console.log(calculate('a'))
     // Result:
 })
