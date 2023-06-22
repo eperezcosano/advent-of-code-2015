@@ -9,7 +9,7 @@ const lineReader = require('readline').createInterface({
 const commandRegex = /[A-Z]+/g;
 const argRegex = /[a-z0-9]+/g;
 
-const wires = new Map()
+let wires = new Map()
 const bitwiseOperations = {
     AND: (a, b) => a & b,
     OR: (a, b) => a | b,
@@ -47,6 +47,12 @@ function calculate(wireId) {
 }
 
 lineReader.on('close', () => {
+
+    const wiresTmp = new Map(wires)
+    const wireA = calculate('a')
+    wires = new Map(wiresTmp)
+    wires.set('b', wireA)
+
     console.log('Result:', calculate('a'))
-    // Result: 3176
+    // Result: 14710
 })
