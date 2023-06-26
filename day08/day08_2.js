@@ -12,14 +12,12 @@ let encoded = 0
 let original = 0
 
 function count(string) {
-    let i = 0
     let count = 0
-    let char
-    while (char = string[i++]) {
-        if (char === '"' || char === '\\') count += 2
+    for (let i = 1; i < string.length - 1; i++) {
+        if (['\\', '"'].includes(string[i])) count++
         count++
     }
-    return count
+    return count + 6
 }
 
 lineReader.on('line', (line) => {
@@ -29,6 +27,6 @@ lineReader.on('line', (line) => {
 
 lineReader.on('close', () => {
     console.log('Result:', encoded - original)
-    // Total: 1371
+    // Total: 
 })
 

@@ -33,6 +33,6 @@ lineReader.on('line', (line) => {
 
 lineReader.on('close', () => {
     console.log('Result:', code - char)
-    // Total: 1371
+    // Result: 1371
 })
 
