@@ -27,6 +27,6 @@ lineReader.on('line', (line) => {
 
 lineReader.on('close', () => {
     console.log('Result:', encoded - original)
-    // Total: 
+    // Result: 2117
 })
 

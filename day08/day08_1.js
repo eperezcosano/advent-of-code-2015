@@ -12,13 +12,11 @@ let code = 0
 let char = 0
 
 function count(string) {
-    let i = 0
     let count = 0
-    let char
-    while (char = string[i++]) {
-        if (char === '"') continue
-        if (char === '\\') {
-            if (string[i] === 'x') i += 2
+    for (let i = 0; i < string.length - 1; i++) {
+        if (string[i] === '"') continue
+        if (string[i] === '\\') {
+            if (string[i + 1] === 'x') i += 2
             i++
         }
         count++
