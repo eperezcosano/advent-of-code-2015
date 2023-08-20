@@ -2,8 +2,7 @@
 
 day=$1
 mkdir -p ${day}
-template="
-/*
+template="/*
 *   --- Day X:  ---
 *          --- Part X ---
 *        Advent Of Code 2015
@@ -17,7 +16,7 @@ lineReader.on('line', (line) => {
 })
 
 lineReader.on('close', () => {
-    // Total:
+    // Result:
 })
 "
 
