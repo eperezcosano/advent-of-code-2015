@@ -54,6 +54,6 @@ lineReader.on('line', line => password = line)
 
 lineReader.on('close', () => {
     const res = generatePassword()
-    console.log(res)
+    console.log('Result:', res)
     // Result: hxbxxyzz
 })
