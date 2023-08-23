@@ -10,27 +10,24 @@ const lineReader = require('readline').createInterface({
 
 let doc
 
-function findSum() {
-    return doc.match(/-?\d+/g).reduce((acc, val) => acc + parseInt(val), 0)
+function hasRed(obj) {
+    return typeof obj === "object" && !Array.isArray(obj) && Object.values(obj).includes('red')
 }
 
-function excludeRed() {
-    let sum = 0
-    const json = JSON.parse(doc)
-
-    for (const key of json) {
-        if (typeof ) {}
-        
+function findSum(obj) {
+    let partialSum = 0
+    if (hasRed(obj)) return partialSum
+    for (const key in obj) {
+        if (typeof obj[key] === "number") partialSum += obj[key]
+        else if (typeof obj[key] === "object") partialSum += findSum(obj[key])
     }
-
-    //if (typeof value === "number") sum += parseInt(value)
-    console.log(sum)
+    return partialSum
 }
 
 lineReader.on('line', line => doc = line)
 
 lineReader.on('close', () => {
-    excludeRed()
-    //console.log('Result:', findSum())
-    // Result: 156366
+    const res = findSum(JSON.parse(doc))
+    console.log('Result:', res)
+    // Result: 96852
 })
