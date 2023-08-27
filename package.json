@@ -1,6 +1,6 @@
 {
   "name": "advent-of-code-2015",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Advent Of Code 2015 Solutions",
   "scripts": {
     "day01_1": "cd day01 && node day01_1.js",
@@ -29,8 +29,8 @@
     "day12_2": "cd day12 && node day12_2.js",
     "day13_1": "cd day13 && node day13_1.js",
     "day13_2": "cd day13 && node day13_2.js",
-    "day14_1": "cd day14 && node day14.js",
-    "day14_2": "cd day14 && node day14.js",
+    "day14_1": "cd day14 && node day14_1.js",
+    "day14_2": "cd day14 && node day14_2.js",
     "day15_1": "cd day15 && node day15_1.js",
     "day15_2": "cd day15 && node day15_2.js",
     "day16_1": "cd day16 && node day16_1.js",
