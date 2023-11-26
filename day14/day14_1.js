@@ -8,33 +8,36 @@ const lineReader = require('readline').createInterface({
     input: require('fs').createReadStream('./day14.txt')
 })
 
-const RACE_TIME = 1_000
+const RACE_TIME = 2503
 
-const reindeer = [
-    {
-        speed: 14,
-        timeFlying: 10,
-        timeResting: 127
-    },
-    {
-        speed: 16,
-        timeFlying: 11,
-        timeResting: 162
+const reindeer = []
+
+function startRace() {
+    for(let i = 1; i <= RACE_TIME; i++) {
+        for(r of reindeer) {
+            if (r.isFlying) {
+                r.distance += r.speed
+                if (--r.dF <= 0) {
+                    r.dF = r.timeFlying
+                    r.isFlying = false
+                }
+            } else {
+                if (--r.dR <= 0) {
+                    r.dR = r.timeResting
+                    r.isFlying = true
+                }
+            }
+        }
     }
-]
-
-const res = reindeer.reduce((acc, value) => {
-    const avgTime = Math.ceil(RACE_TIME / (value.timeFlying + value.timeResting))
-    const kms = avgTime * value.speed * value.timeFlying
-    console.log(kms)
-    return kms > acc ? kms : acc
-}, 0)
-
-console.log(res)
+}
 
 lineReader.on('line', (line) => {
+    const [, , , speed, , , timeFlying, , , , , , , timeResting] = line.split(' ').map(val => parseInt(val))
+    reindeer.push({ speed, timeFlying, dF: timeFlying, timeResting, dR: timeResting, distance: 0, isFlying: true })
 })
 
 lineReader.on('close', () => {
-    // Result:
+    startRace()
+    console.log('Result:', Math.max(...reindeer.map(val => val.distance)))
+    // Result: 2655
 })
