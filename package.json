@@ -1,6 +1,6 @@
 {
   "name": "advent-of-code-2015",
-  "version": "0.0.14",
+  "version": "0.0.17",
   "description": "Advent Of Code 2015 Solutions",
   "scripts": {
     "day01_1": "cd day01 && node day01_1.js",
@@ -51,7 +51,7 @@
     "day23_2": "cd day23 && node day23_2.js",
     "day24_1": "cd day24 && node day24_1.js",
     "day24_2": "cd day24 && node day24_2.js",
-    "day25": "cd day25 && node day25.js"
+    "day25_1": "cd day25 && node day25_1.js"
   },
   "keywords": [
     "aoc",
@@ -66,7 +66,5 @@
     "type": "git",
     "url": "https://github.com/eperezcosano/advent-of-code-2015.git"
   },
-  "license": "MIT",
-  "dependencies": {
-  }
+  "license": "MIT"
 }
