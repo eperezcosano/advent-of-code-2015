@@ -1,5 +1,5 @@
 # Advent Of Code 2015
-These are my solutions of the year 2015 [AdventOfCode](https://adventofcode.com/2015) in nodeJS.
+These are my solutions of the year 2015 [AdventOfCode](https://adventofcode.com/2015) in Node.js.
 To run it just type `npm run dayN_P` where **N** is the number of the day and **P** is the part either 1 or 2.
 
 Table of solutions:
@@ -22,7 +22,7 @@ Table of solutions:
 | **14** | 2655     | 1059     |
 | **15** | 21367368 | 1766400  |
 | **16** | 40       | 241      |
-| **17** | 4372     |          |
+| **17** | 4372     | 4        |
 | **18** |          |          |
 | **19** |          |          |
 | **20** |          |          |
