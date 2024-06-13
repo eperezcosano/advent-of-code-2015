@@ -33,4 +33,3 @@ lineReader.on('close', () => {
     console.log('Result:', molecules.size)
     // Result: 535
 })
-
