@@ -1,6 +1,6 @@
 /*
 *   --- Day 21: RPG Simulator 20XX ---
-*           --- Part One ---
+*           --- Part Two ---
 *          Advent Of Code 2015
 * */
 
