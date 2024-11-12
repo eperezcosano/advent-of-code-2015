@@ -8,24 +8,41 @@ const lineReader = require('readline').createInterface({
     input: require('fs').createReadStream('./day22.txt')
 })
 
-const player = {
-    hit: 10,
-    armor: 0,
-    mana: 250
-}
+const boss = []
 
-const boss = {
-    hit: 14,
-    damage: 8
-}
+function simulate(playerHit, mana, bossHit, shieldTimer, poisonTimer, rechargeTimer, myTurn, depth) {
+    //if (myTurn) playerHit -= 1
+    if (bossHit <= 0) return 0
 
-const spells = [
-    { name: 'missile', cost: 53, damage: 4 },
-    { name: 'drain', cost: 73, damage: 2, heal: 2 },
-    { name: 'shield', cost: 113, effect: 7, turns: 6 },
-    { name: 'poison', cost: 173, effect: 3, turns: 6 },
-    { name: 'recharge', cost: 229, effect: 101, turns: 5 }
-]
+    //playerHit = Math.min(playerHit, 50)
+
+    if (depth === 0 || playerHit <= 0) return 1e10
+
+    const newShieldTimer = Math.max(0, shieldTimer - 1)
+    const newPoisonTimer = Math.max(0, poisonTimer - 1)
+    const newRechargeTimer = Math.max(0, rechargeTimer - 1)
+
+    if (!myTurn) {
+        if (poisonTimer > 0) bossHit -= 3
+        const playerArmor = shieldTimer === 0 ? 0 : 7
+        if (rechargeTimer > 0) mana += 101
+        if (bossHit <= 0) return 0
+        else playerHit -= Math.max(1, boss[1] - playerArmor)
+        return simulate(playerHit, mana, bossHit, newShieldTimer, newPoisonTimer, newRechargeTimer, !myTurn, depth - 1)
+    } else {
+        if (poisonTimer > 0) bossHit -= 3
+        if (bossHit <= 0) return 0
+        if (rechargeTimer > 0) mana += 101
+        let min = 6e10
+        if (mana < 53) return 1e10
+        if (mana >= 53) min = Math.min(min, 53 + simulate(playerHit, mana - 53, bossHit - 4, newShieldTimer, newPoisonTimer, newRechargeTimer, !myTurn, depth - 1))
+        if (mana >= 73) min = Math.min(min, 73 + simulate(playerHit + 2, mana - 73, bossHit - 2, newShieldTimer, newPoisonTimer, newRechargeTimer, !myTurn, depth - 1))
+        if (mana >= 113 && newShieldTimer === 0) min = Math.min(min, 113 + simulate(playerHit, mana - 113, bossHit, 6, newPoisonTimer, newRechargeTimer, !myTurn, depth - 1))
+        if (mana >= 173 && newPoisonTimer === 0) min = Math.min(min, 173 + simulate(playerHit, mana - 173, bossHit, newShieldTimer, 6, newRechargeTimer, !myTurn, depth - 1))
+        if (mana >= 229 && newRechargeTimer === 0) min = Math.min(min, 229 + simulate(playerHit, mana - 229, bossHit, newShieldTimer, newPoisonTimer, 5, !myTurn, depth - 1))
+        return min
+    }
+}
 
 function play() {
     const activeSpells = []
@@ -104,11 +121,12 @@ function play() {
 }
 
 
-lineReader.on('line', (line) => {
+lineReader.on('line', line => {
+    boss.push(parseInt(line.split(' ').pop()))
 })
 
 lineReader.on('close', () => {
-    play()
+    const res = simulate(50, 500, boss[0], 0, 0, 0, true, 1e10)
+    console.log('Result:', res)
     // Result:
 })
-
